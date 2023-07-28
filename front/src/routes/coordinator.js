@@ -1,13 +1,15 @@
-export const goToLoginPage= (navigator) =>{
-  navigator('/login')
-}
-export const goToCadastrarPage= (navigator) =>{
-  navigator('/cadastrar')
-}
-export const goToPostagemPage= (navigator,id) =>{
-  navigator(`/postagem/${id}`)
-}
+export const goToHomePage = (navigate) => {
+  navigate("/");
+};
 
-export const goToComentariosPage= (navigator) =>{
-  navigator('/cementarios')
-}
+export const goToLoginPage = (navigate) => {
+  navigate("/login");
+};
+
+export const goToSignupPage = (navigate) => {
+  navigate("/signup");
+};
+
+export const goToDetailsPage = (navigate, id) => {
+  navigate(`/details/${id}`);
+};

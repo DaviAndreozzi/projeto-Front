@@ -1,14 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "../pages/HomePage";
+import { SignupPage } from "../pages/SignupPage";
+import {  LoginPage } from "../pages/Login";
+import { PostDetailsPage } from "../pages/PostDetailsPage";
+import { ErrorPage } from "../pages/ErrorPage";
 
-import { CadastrarPage, PostagemPage, ComentariosPage, LoginPage } from "../pages";
 export const Router = () => {
   return (
     <BrowserRouter>
-      <LoginPage />
       <Routes>
-        <Route path="/cadastrar" element={<CadastrarPage />} />
-        <Route path="/postagem/:id" element={<PostagemPage />} />
-        <Route path="/comentarios" element={<ComentariosPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/details/:id" element={<PostDetailsPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
