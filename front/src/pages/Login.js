@@ -4,7 +4,6 @@ import { goToHomePage, goToSignupPage } from "../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { onChangeForm } from "../utils/onChangeForm";
 import {
-  requestDataUser,
   useRequestDataUser,
 } from "../hooks/useRequestDataUser";
 import { ToastContainer, toast } from "react-toastify";
