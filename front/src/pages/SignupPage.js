@@ -41,7 +41,6 @@ export const SignupPage = () => {
   useEffect(() => {
     if (data?.token) {
       localStorage.setItem("token", data.token);
-
       goToHomePage(navigate);
     }
   }, [data]);
@@ -75,7 +74,7 @@ export const SignupPage = () => {
               id="name"
               name="name"
               type="name"
-              value={form.name}
+              value={form.apelido}
               onChange={(e) => setForm(onChangeForm(e, form))}
               placeholder="Apelido"
               required
