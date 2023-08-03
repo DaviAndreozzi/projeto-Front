@@ -100,11 +100,7 @@ export const HomePage = () => {
           <div className="flex justify-between items-center bg-slate-200 h-12 mb-1 ">
             <div className="basis-1/4"></div>
             <div className="basis-1/2">
-              <img
-                className="mx-auto w-7 h-7 "
-                src={logo}
-                alt="logo da labenu"
-              />
+              <img className="mx-auto w-7 h-7 " src={logo} alt="logo da labenu" />
             </div>
             <div className="flex justify-end basis-1/4 text-blue-500 hover:text-blue-300">
               <button className="mr-5" onClick={() => logout(navigate)}>
@@ -115,10 +111,7 @@ export const HomePage = () => {
 
           <div className="flex min-h-full flex-col justify-center  mx-26 px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <form
-                type="submit"
-                className="flex flex-col gap-3 justify-center mb-8"
-              >
+              <form type="submit" className="flex flex-col gap-3 justify-center mb-8">
                 <textarea
                   id="content"
                   name="content"
@@ -170,7 +163,7 @@ export const HomePage = () => {
                             key={user.id}
                             id={user.id}
                             idCreatorPost={user.creator.id}
-                            name={user.creator.name}
+                            apelido={user.creator.apelido}
                             content={user.content}
                             numberOfLike={user.likes}
                             numberOfDislike={user.dislikes}
@@ -188,18 +181,7 @@ export const HomePage = () => {
           </div>
         </div>
 
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
       </div>
     );
   }
