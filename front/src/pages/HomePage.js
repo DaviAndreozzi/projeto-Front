@@ -44,7 +44,13 @@ export const HomePage = () => {
   const [response, setResponse] = useState("");
 
   const [loadingData, error, errorMessage] = useGetPosts();
-  const [loadingCreatePostData, loadingCreatedPost, errorCreatedPost, setErrorCreatedPost, errorMessageCreatedPost] = useCreatePosts();
+  const [
+    loadingCreatePostData,
+    loadingCreatedPost,
+    errorCreatedPost,
+    setErrorCreatedPost,
+    errorMessageCreatedPost,
+  ] = useCreatePosts();
 
   const toResult = async () => {
     const response = await loadingData("", authorization);
