@@ -8,28 +8,10 @@ import { onChangeForm } from "../utils/onChangeForm";
 import { useCreatePosts } from "../hooks/useCreatePosts";
 import { ErrorPage } from "./ErrorPage";
 import { ToastContainer, toast } from "react-toastify";
-import { useTokenManager } from "../hooks/useTokenManage";
 import { Postagem } from "../components/Postagem";
 
 export const HomePage = () => {
   const navigate = useNavigate();
-
-  const getPayload = useTokenManager();
-  const [payload, setPayload] = useState("");
-
-  const gettingPayload = async () => {
-    const payload = await getPayload(localStorage.getItem("token"));
-
-    setPayload(payload);
-  };
-
-  if (payload === "Token is invalid") {
-    localStorage.removeItem("token");
-
-    goToLoginPage(navigate);
-  }
-
-  const result = gettingPayload();
 
   const [form, setForm] = useState({ content: "" });
 
@@ -44,13 +26,7 @@ export const HomePage = () => {
   const [response, setResponse] = useState("");
 
   const [loadingData, error, errorMessage] = useGetPosts();
-  const [
-    loadingCreatePostData,
-    loadingCreatedPost,
-    errorCreatedPost,
-    setErrorCreatedPost,
-    errorMessageCreatedPost,
-  ] = useCreatePosts();
+  const [loadingCreatePostData, loadingCreatedPost, errorCreatedPost, setErrorCreatedPost, errorMessageCreatedPost] = useCreatePosts();
 
   const toResult = async () => {
     const response = await loadingData("", authorization);
@@ -90,6 +66,13 @@ export const HomePage = () => {
 
     toResult();
   }, [response]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   if (error) {
     return <ErrorPage error={errorMessage} />;
@@ -163,14 +146,13 @@ export const HomePage = () => {
                             key={user.id}
                             id={user.id}
                             idCreatorPost={user.creator.id}
-                            apelido={user.creator.apelido}
+                            name={user.creator.name}
                             content={user.content}
                             numberOfLike={user.likes}
                             numberOfDislike={user.dislikes}
                             comments={user.comments}
                             impressions={user.impressions}
                             toResult={toResult}
-                            payload={payload}
                           />
                         );
                       })}

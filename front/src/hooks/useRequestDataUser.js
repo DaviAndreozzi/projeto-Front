@@ -12,7 +12,7 @@ export const useRequestDataUser = () => {
 
     try {
       const { data } = await axios.post(`${Base_URL_USERS}/${path}`, body);
-
+      console.log(data)
       setLoading(false);
 
       return data;
