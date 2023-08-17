@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { onChangeForm } from "../utils/onChangeForm";
 import { useRequestDataUser } from "../hooks/useRequestDataUser";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { Base_URL_USERS } from "../constants/BASE_URL";
 
 export const SignupPage = () => {
   const navigate = useNavigate();
@@ -18,8 +20,11 @@ export const SignupPage = () => {
 
   const registeringUser = async (e) => {
     e.preventDefault();
+    axios.post(`${Base_URL_USERS}/signup`, form )
+    .then((res)=>console.log(res))
+    .catch((erro)=> console.log(erro))
 
-    setData(await loadingData("signup", form));
+    // setData(await loadingData("signup", form));
   };
 
   error &&
@@ -74,9 +79,9 @@ export const SignupPage = () => {
               id="name"
               name="name"
               type="name"
-              value={form.apelido}
+              value={form.name}
               onChange={(e) => setForm(onChangeForm(e, form))}
-              placeholder="Apelido"
+              placeholder="name"
               required
               className="block w-full h-14 px-3 rounded-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />

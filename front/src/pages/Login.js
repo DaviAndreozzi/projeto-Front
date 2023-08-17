@@ -22,6 +22,7 @@ export const LoginPage = () => {
     e.preventDefault();
 
     setData(await loadingData("login", form));
+    navigate("/")
   };
 
   error &&

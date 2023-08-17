@@ -173,7 +173,7 @@ export const PostDetailsPage = () => {
                   <Postagem
                     id={id}
                     idCreatorPost={data.creator.id}
-                    apelido={data.creator.apelido}
+                    name={data.creator.name}
                     content={data.content}
                     numberOfLike={data.likes}
                     numberOfDislike={data.dislikes}
@@ -235,7 +235,7 @@ export const PostDetailsPage = () => {
                           key={comentario.id}
                           id={comentario.id}
                           idCreatorcomentario={comentario.creator.id}
-                          apelido={comentario.creator.apelido}
+                          name={comentario.creator.name}
                           content={comentario.content}
                           numberOfLike={comentario.likes}
                           numberOfDislike={comentario.dislikes}

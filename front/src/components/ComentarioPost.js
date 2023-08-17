@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 export const ComentarioPost = ({
   id,
   idCreatorComment,
-  apelido,
+  name,
   content,
   numberOfLike,
   numberOfDislike,
@@ -86,7 +86,7 @@ export const ComentarioPost = ({
 
   return (
     <div className="flex flex-col w-full h-full border border-[#E0E0E0] rounded-xl p-2.5 gap-5">
-      <div className="font-ibm text-xs text-[#6F6F6F]">enviado por: {apelido}</div>
+      <div className="font-ibm text-xs text-[#6F6F6F]">enviado por: {name}</div>
       <div className="font-ibm">{content}</div>
       <div className="flex gap-3">
         <div className="flex gap-3 h-6 rounded-full border border-[#E0E0E0] items-center p-px">
