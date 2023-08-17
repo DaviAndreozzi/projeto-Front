@@ -20,7 +20,7 @@ export const SignupPage = () => {
 
   const registeringUser = async (e) => {
     e.preventDefault();
-    axios.post(`https://final-project-i3l1.onrender.com/users/signup`, form )
+    axios.post(`${Base_URL_USERS}/signup`, form )
     .then((res)=>console.log(res))
     .catch((erro)=> console.log(erro))
 

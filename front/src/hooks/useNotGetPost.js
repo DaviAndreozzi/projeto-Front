@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import {Base_URL_POST } from "../constants/BASE_URL";
 
-export const useGetPosts = () => {
+export const useNotGetPosts = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMensage] = useState("");
@@ -13,10 +13,9 @@ export const useGetPosts = () => {
     try {
       let response;
 
-      if (!id) {
-        response = await axios.get(`${Base_URL_POST
-        }`, authorization);
-      } 
+      if (id){
+        response = await axios.get(`${Base_URL_POST}/${id}`, authorization);
+      }
 
       setLoading(false);
 
@@ -34,3 +33,4 @@ export const useGetPosts = () => {
 
   return [loadingData, error, errorMessage];
 };
+// mexi aqui
