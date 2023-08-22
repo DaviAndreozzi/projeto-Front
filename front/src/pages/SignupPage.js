@@ -12,44 +12,40 @@ export const SignupPage = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({});
-  const [loadingData, loading, error, setError, errorMessage] =
-    useRequestDataUser();
+  const [loadingData, loading, error, setError, errorMessage] = useRequestDataUser();
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState("password");
 
   const registeringUser = async (e) => {
     e.preventDefault();
-    axios.post(`${Base_URL_USERS}/signup`, form )
-    .then((res)=>console.log(res))
-    .catch((erro)=> console.log(erro))
-
-    // setData(await loadingData("signup", form));
+    axios
+      .post(`${Base_URL_USERS}/signup`, form)
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        goToHomePage(navigate);
+      })
+      .catch((erro) => console.log(erro));
   };
 
   error &&
-    toast.error(
-      errorMessage.response.data[0].message || errorMessage.response.data,
-      {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    ) &&
+    toast.error(errorMessage.response.data[0].message || errorMessage.response.data, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    }) &&
     setError(false);
 
   useEffect(() => {
-    if (data?.token) {
-      localStorage.setItem("token", data.token);
+    if (localStorage.getItem("token")) {
       goToHomePage(navigate);
     }
-  }, [data]);
-
+  }, []);
   return (
     <div className="flex min-h-full flex-col justify-center ">
       <div className="mb-48 sm:mb-24">
@@ -66,9 +62,7 @@ export const SignupPage = () => {
         </div>
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm mx-26 px-6">
-          <h2 className=" mt-1 text-center text-xl/10 font-ibm font-bold leading-10 ">
-            Olá, boas vindas ao LabEddit ;
-          </h2>
+          <h2 className=" mt-1 text-center text-xl/10 font-ibm font-bold leading-10 ">Olá, boas vindas ao LabEddit ;</h2>
         </div>
       </div>
 
@@ -128,11 +122,7 @@ export const SignupPage = () => {
                     stroke-linejoin="round"
                     d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
                   />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               ) : (
                 <svg
@@ -156,12 +146,7 @@ export const SignupPage = () => {
 
           <div className="flex flex-col gap-4 justify-center sm:mx-auto sm:w-full sm:max-w-sm mx-26 px-6">
             <h2 className=" mt-1 text-start text-xs font-ibm leading-4 ">
-              Ao continuar, você concorda com o nosso{" "}
-              <a className="text-blue-500 underline ">Contrato de usuário</a> e
-              nossa{" "}
-              <a className="text-blue-500 underline ">
-                Política de Privacidade
-              </a>
+              Ao continuar, você concorda com o nosso <a className="text-blue-500 underline ">Contrato de usuário</a> e nossa <a className="text-blue-500 underline ">Política de Privacidade</a>
             </h2>
 
             <div className="flex gap-2.5">
@@ -169,10 +154,7 @@ export const SignupPage = () => {
                 <input type="checkbox" id="to-agree" name="to-agree" />
               </div>
 
-              <label
-                for="to-agree"
-                className=" text-start items-center text-sm font-ibm leading-4 "
-              >
+              <label for="to-agree" className=" text-start items-center text-sm font-ibm leading-4 ">
                 Eu concordo em receber emails sobre coisas legais no Labeddit
               </label>
             </div>
@@ -199,18 +181,7 @@ export const SignupPage = () => {
           </div>
         </form>
 
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
       </div>
     </div>
   );

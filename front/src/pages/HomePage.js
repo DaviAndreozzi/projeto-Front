@@ -67,13 +67,7 @@ export const HomePage = () => {
     toResult();
   }, [response]);
 
-  // mexi aqui
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // }, []);
+  
 
   if (error) {
     return <ErrorPage error={errorMessage} />;
